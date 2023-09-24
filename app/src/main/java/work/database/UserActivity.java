@@ -46,8 +46,8 @@ public class UserActivity extends AppCompatActivity {
             userCursor = db.rawQuery("select * from " + DatabaseHelper.TABLE + " where " +
                     DatabaseHelper.COLUMN_ID + "=?", new String[]{String.valueOf(userId)});
             userCursor.moveToFirst();
-            labBox.setText(userCursor.getString(1));
-            titleBox.setText(String.valueOf(userCursor.getInt(2)));
+            titleBox.setText(userCursor.getString(2));
+            labBox.setText(String.valueOf(userCursor.getInt(1)));
             userCursor.close();
         } else {
             // скрываем кнопку удаления
@@ -57,8 +57,8 @@ public class UserActivity extends AppCompatActivity {
 
     public void save(View view){
         ContentValues cv = new ContentValues();
-        cv.put(DatabaseHelper.COLUMN_CLASS, labBox.getText().toString());
-        cv.put(DatabaseHelper.COLUMN_TITLE, Integer.parseInt(titleBox.getText().toString()));
+        cv.put(DatabaseHelper.COLUMN_CLASS, Integer.parseInt(labBox.getText().toString()) );
+        cv.put(DatabaseHelper.COLUMN_TITLE, titleBox.getText().toString());
 
         if (userId > 0) {
             db.update(DatabaseHelper.TABLE, cv, DatabaseHelper.COLUMN_ID + "=" + userId, null);
