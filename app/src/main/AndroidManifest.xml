@@ -13,11 +13,17 @@
         android:theme="@style/Theme.DataBase"
         tools:targetApi="31">
         <activity
-            android:name=".UserActivity"
+            android:name=".UpdataData"
             android:exported="false" />
         <activity
+            android:name=".AddActivity"
+            android:exported="false"
+            android:label="Работа с данными"
+            android:parentActivityName=".MainActivity" />
+        <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:label="Библиотека оборудования">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
