@@ -13,34 +13,23 @@ import android.widget.Button;
 import android.widget.EditText;
 //CRUD взаимодействие
 public class AddActivity extends AppCompatActivity {
-
     EditText labBox, titleBox;
-
-    Button saveButton;
-
-    SQLiteDatabase db;
-    Cursor userCursor;
-    long userId=0;
+    Button addButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
 
-        labBox = findViewById(R.id.lab);
-        titleBox = findViewById(R.id.equip);
-        saveButton = findViewById(R.id.saveButton);
+        labBox = findViewById(R.id.lab_add);
+        titleBox = findViewById(R.id.equip_add);
+        addButton = findViewById(R.id.saveButton);
 
-        saveButton.setOnClickListener(new View.OnClickListener() {
+        addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DatabaseHelper myDB = new DatabaseHelper(AddActivity.this);
                 myDB.addEquip(Integer.parseInt(labBox.getText().toString()), titleBox.getText().toString());
             }
         });
-
     }
-
-
-
-
 }

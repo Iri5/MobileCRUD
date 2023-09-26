@@ -12,9 +12,9 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     static final String TABLE = "equip"; // название таблицы в бд
     // названия столбцов
     private Context context;
-    public static final String COLUMN_ID = "_id";
-    public static final String COLUMN_CLASS = "class";
-    public static final String COLUMN_TITLE = "title";
+    private static final String COLUMN_ID = "_id";
+    private static final String COLUMN_CLASS = "class";
+    private static final String COLUMN_TITLE = "title";
 
     public DatabaseHelper(Context context) {
 
@@ -59,5 +59,30 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             cursor = db.rawQuery(query, null);
         }
         return cursor;
+    }
+    void updateData(String row_id, String lab, String title){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_CLASS, lab);
+        cv.put(COLUMN_TITLE, title);
+        long result = db.update(TABLE, cv, "_id", new String[]{row_id});
+        if (result == -1){
+            Toast.makeText(context, "Ошибка", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Успешно", Toast.LENGTH_SHORT).show();
+        }
+    }
+    void deleteOneRow(String row_id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        long result = db.delete(TABLE, "_id=?", new String[]{row_id});
+        if (result == -1){
+            Toast.makeText(context, "Ошибка удаления", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Успешно удалено", Toast.LENGTH_SHORT).show();
+        }
+    }
+    void deleteAllData(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM " + TABLE);
     }
 }

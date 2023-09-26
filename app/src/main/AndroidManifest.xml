@@ -13,12 +13,14 @@
         android:theme="@style/Theme.DataBase"
         tools:targetApi="31">
         <activity
-            android:name=".UpdataData"
+            android:name=".UpdateData"
+            android:label="Редактирование обородувания"
+            android:parentActivityName=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".AddActivity"
             android:exported="false"
-            android:label="Работа с данными"
+            android:label="Добавление обородувания"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
@@ -26,7 +28,7 @@
             android:label="Библиотека оборудования">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
+                <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
