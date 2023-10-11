@@ -16,7 +16,7 @@
             android:name=".UpdateData"
             android:label="Редактирование обородувания"
             android:parentActivityName=".MainActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".AddActivity"
             android:exported="false"

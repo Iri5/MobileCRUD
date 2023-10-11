@@ -7,12 +7,13 @@
     tools:context=".AddActivity"
     android:padding="30dp">
 
+
     <EditText
         android:id="@+id/lab_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:hint="Введите № класса"
+        android:hint="@string/enter_class"
         android:inputType="number"
         android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/equip_edit"
@@ -25,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:hint="Введите название оборудования"
+        android:hint="@string/enter_title"
         android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/updateButton"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -37,7 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_marginTop="40dp"
-        android:text="Update"
+        android:text="@string/update"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/equip_edit" />
@@ -46,9 +47,11 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_marginTop="16dp"
-        android:text="Delete"
+        android:text="@string/delete"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/updateButton" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

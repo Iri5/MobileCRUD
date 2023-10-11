@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class UpdateData extends AppCompatActivity {
@@ -20,7 +21,6 @@ public class UpdateData extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_data);
-
         title_input = findViewById(R.id.equip_edit);
         lab_input = findViewById(R.id.lab_edit);
         update_button = findViewById(R.id.updateButton);
@@ -36,9 +36,10 @@ public class UpdateData extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 DatabaseHelper myDB = new DatabaseHelper(UpdateData.this);
-                title = title_input.getText().toString();
-                lab = lab_input.getText().toString();
+                title = title_input.getText().toString().trim();
+                lab = lab_input.getText().toString().trim();
                 myDB.updateData(id, lab, title);
+                finish();
             }
         });
         delete_button.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +58,7 @@ public class UpdateData extends AppCompatActivity {
 
             title_input.setText(title);
             lab_input.setText(lab);
+
             Log.d("stev", title+" "+lab);
         } else {
             Toast.makeText(this, "Нет данных", Toast.LENGTH_SHORT).show();
@@ -64,9 +66,9 @@ public class UpdateData extends AppCompatActivity {
     }
     void confirmDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Delete " + title + " ?");
-        builder.setMessage("Are you sure want to delete " + title + " ?");
-        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+        builder.setTitle("Удалить " + title + " ?");
+        builder.setMessage("Вы уверены, что хотите удалить " + title + " ?");
+        builder.setPositiveButton("Да", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 DatabaseHelper myDB = new DatabaseHelper(UpdateData.this);
@@ -74,7 +76,7 @@ public class UpdateData extends AppCompatActivity {
                 finish();
             }
         });
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("Нет", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 

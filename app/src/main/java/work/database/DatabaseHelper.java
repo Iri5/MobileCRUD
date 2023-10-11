@@ -63,9 +63,12 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     void updateData(String row_id, String lab, String title){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(COLUMN_CLASS, lab);
+        int labInt = Integer.parseInt(lab);
+        String row_id_trim = row_id.trim();
+
+        cv.put(COLUMN_CLASS, labInt);
         cv.put(COLUMN_TITLE, title);
-        long result = db.update(TABLE, cv, "_id", new String[]{row_id});
+        long result = db.update(TABLE, cv, "_id" + "=" + row_id_trim, null);
         if (result == -1){
             Toast.makeText(context, "Ошибка", Toast.LENGTH_SHORT).show();
         } else {

@@ -6,34 +6,38 @@
     android:layout_height="match_parent"
     tools:context=".AddActivity"
     android:padding="30dp">
+
     <EditText
         android:id="@+id/lab_add"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:hint="@string/enter_class"
         android:inputType="number"
-        android:hint="Введите № класса"
+        android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/equip_add"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/equip_add"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:hint="Введите название оборудования"
-        app:layout_constraintTop_toBottomOf="@+id/lab_add"
+        android:hint="@string/enter_title"
+        android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/saveButton"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lab_add" />
 
     <Button
         android:id="@+id/saveButton"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_marginTop="40dp"
-        android:text="Сохранить"
+        android:text="@string/save"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/equip_add" />

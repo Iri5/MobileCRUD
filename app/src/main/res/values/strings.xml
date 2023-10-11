@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">DataBase</string>
-    <string name="button">Add</string>
+    <string name="button">Добавить</string>
+    <string name="myclass">Класс: </string>
+    <string name="type">Тип</string>
+    <string name="title">Название</string>
+    <string name="enter_class">Введите название класса</string>
+    <string name="enter_type">Введите тип оборудования</string>
+    <string name="enter_title">Введите название оборудования</string>
+    <string name="update">Изменить</string>
+    <string name="delete">Удалить</string>
+    <string name="save">Сохранить</string>
+
+
 </resources>
