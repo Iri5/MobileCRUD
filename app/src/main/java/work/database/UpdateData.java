@@ -14,15 +14,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class UpdateData extends AppCompatActivity {
-    EditText title_input, lab_input;
+    EditText title_input, lab_input, type_input;
     Button update_button, delete_button;
-    String id, lab, title;
+    String id, lab, title, type;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_data);
         title_input = findViewById(R.id.equip_edit);
         lab_input = findViewById(R.id.lab_edit);
+        type_input = findViewById(R.id.type_edit);
         update_button = findViewById(R.id.updateButton);
         delete_button = findViewById(R.id.deleteButton);
 
@@ -36,10 +37,17 @@ public class UpdateData extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 DatabaseHelper myDB = new DatabaseHelper(UpdateData.this);
+
                 title = title_input.getText().toString().trim();
                 lab = lab_input.getText().toString().trim();
-                myDB.updateData(id, lab, title);
-                finish();
+                type = type_input.getText().toString().trim();
+                if (title.isEmpty() || lab.isEmpty() || type.isEmpty()){
+                    Toast.makeText(UpdateData.this, "Заполните все поля", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    myDB.updateData(id, lab, title, type);
+                    finish();
+                }
             }
         });
         delete_button.setOnClickListener(new View.OnClickListener() {
@@ -51,13 +59,15 @@ public class UpdateData extends AppCompatActivity {
 
     }
     void getAndSetIntentData(){
-        if (getIntent().hasExtra("id") && getIntent().hasExtra("lab") && getIntent().hasExtra("title")){
+        if (getIntent().hasExtra("id") && getIntent().hasExtra("lab") && getIntent().hasExtra("title") && getIntent().hasExtra("type")){
             id = getIntent().getStringExtra("id");
             lab = getIntent().getStringExtra("lab");
             title = getIntent().getStringExtra("title");
+            type = getIntent().getStringExtra("type");
 
             title_input.setText(title);
             lab_input.setText(lab);
+            type_input.setText(type);
 
             Log.d("stev", title+" "+lab);
         } else {

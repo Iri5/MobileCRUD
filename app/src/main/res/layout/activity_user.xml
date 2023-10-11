@@ -11,9 +11,8 @@
         android:id="@+id/lab_add"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:hint="@string/enter_class"
-        android:inputType="number"
         android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/equip_add"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -27,19 +26,31 @@
         android:layout_marginTop="16dp"
         android:hint="@string/enter_title"
         android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/saveButton"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lab_add" />
+
+    <EditText
+        android:id="@+id/type_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="@string/enter_type"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/saveButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/equip_add" />
 
     <Button
         android:id="@+id/saveButton"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:text="@string/save"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/equip_add" />
+        app:layout_constraintTop_toBottomOf="@+id/type_add" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

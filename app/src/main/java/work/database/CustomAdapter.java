@@ -25,14 +25,15 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     private Context context;
     private Activity activity;
-    private ArrayList equip_id, equip_title, equip_lab;
+    private ArrayList equip_id, equip_title, equip_lab, equip_type;
 
-    CustomAdapter(Activity activity, Context context, ArrayList equip_id, ArrayList equip_lab, ArrayList equip_title){
+    CustomAdapter(Activity activity, Context context, ArrayList equip_id, ArrayList equip_lab, ArrayList equip_title, ArrayList equip_type){
         this.activity = activity;
         this.context = context;
         this.equip_id = equip_id;
         this.equip_lab = equip_lab;
         this.equip_title = equip_title;
+        this.equip_type = equip_type;
     }
     @NonNull
     @Override
@@ -44,9 +45,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, @SuppressLint("RecyclerView") final int position) {
-        holder.equip_id_txt.setText(String.valueOf(equip_id.get(position)));
+
         holder.equip_lab_txt.setText(String.valueOf(equip_lab.get(position)));
         holder.equip_title_txt.setText(String.valueOf(equip_title.get(position)));
+        holder.equip_type_txt.setText(String.valueOf(equip_type.get(position)));
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,6 +56,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                 intent.putExtra("id", String.valueOf(equip_id.get(position)));
                 intent.putExtra("lab", String.valueOf(equip_lab.get(position)));
                 intent.putExtra("title", String.valueOf(equip_title.get(position)));
+                intent.putExtra("type", String.valueOf(equip_type.get(position)));
 
                 activity.startActivityForResult(intent, 1);
             }
@@ -67,14 +70,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView equip_id_txt, equip_lab_txt, equip_title_txt;
+        TextView equip_lab_txt, equip_title_txt, equip_type_txt;
         LinearLayout mainLayout;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            equip_id_txt = itemView.findViewById(R.id.equip_id_txt);
             equip_lab_txt = itemView.findViewById(R.id.equip_lab_txt);
             equip_title_txt = itemView.findViewById(R.id.equip_title_txt);
+            equip_type_txt = itemView.findViewById(R.id.equip_type_txt);
             mainLayout = itemView.findViewById(R.id.mainLayout);
         }
     }

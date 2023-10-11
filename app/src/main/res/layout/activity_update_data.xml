@@ -14,12 +14,20 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:hint="@string/enter_class"
-        android:inputType="number"
         android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/equip_edit"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <EditText
+        android:id="@+id/type_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="@string/enter_type"
+        android:minHeight="48dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/equip_edit" />
 
     <EditText
         android:id="@+id/equip_edit"
@@ -28,7 +36,6 @@
         android:layout_marginTop="16dp"
         android:hint="@string/enter_title"
         android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/updateButton"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lab_edit" />
@@ -41,7 +48,7 @@
         android:text="@string/update"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/equip_edit" />
+        app:layout_constraintTop_toBottomOf="@+id/type_edit" />
     <Button
         android:id="@+id/deleteButton"
         android:layout_width="match_parent"

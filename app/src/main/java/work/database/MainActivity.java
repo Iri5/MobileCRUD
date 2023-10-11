@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     TextView no_data;
 
     DatabaseHelper myDB;
-    ArrayList<String> equip_id, equip_lab, equip_title;
+    ArrayList<String> equip_id, equip_lab, equip_title, equip_type;
     CustomAdapter customAdapter;
 
     @Override
@@ -58,14 +58,23 @@ public class MainActivity extends AppCompatActivity {
         equip_id = new ArrayList<>();
         equip_lab = new ArrayList<>();
         equip_title = new ArrayList<>();
+        equip_type = new ArrayList<>();
 
         storeDataInArray();
 
-        customAdapter = new CustomAdapter(MainActivity.this, this, equip_id, equip_lab, equip_title);
+        customAdapter = new CustomAdapter(MainActivity.this, this, equip_id, equip_lab, equip_title, equip_type);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        storeDataInArray();
+        recreate();
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -85,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
                 equip_id.add(cursor.getString(0));
                 equip_lab.add(cursor.getString(1));
                 equip_title.add(cursor.getString(2));
+                equip_type.add(cursor.getString(3));
 
             }
             empty_imageView.setVisibility(View.GONE);

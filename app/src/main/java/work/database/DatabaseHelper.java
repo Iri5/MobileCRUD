@@ -8,13 +8,14 @@ import android.widget.Toast;
 
 public class DatabaseHelper extends SQLiteOpenHelper{
     private static final String DATABASE_NAME = "equipment.db"; // название бд
-    private static final int SCHEMA = 1; // версия базы данных
+    private static final int SCHEMA = 2; // версия базы данных
     static final String TABLE = "equip"; // название таблицы в бд
     // названия столбцов
     private Context context;
     private static final String COLUMN_ID = "_id";
     private static final String COLUMN_CLASS = "class";
     private static final String COLUMN_TITLE = "title";
+    private static final String COLUMN_TYPE = "type";
 
     public DatabaseHelper(Context context) {
 
@@ -27,10 +28,10 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
         db.execSQL("CREATE TABLE equip (" + COLUMN_ID
                 + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_CLASS
-                + " INTEGER, " + COLUMN_TITLE + " TEXT);");
+                + " INTEGER, " + COLUMN_TITLE + " TEXT, " + COLUMN_TYPE + " TEXT);");
         // добавление начальных данных
         db.execSQL("INSERT INTO "+ TABLE +" (" + COLUMN_CLASS
-                + ", " + COLUMN_TITLE  + ") VALUES (1, 'Компьютер');");
+                + ", " + COLUMN_TITLE  + ", " + COLUMN_TYPE + ") VALUES ('1', 'Xiaomi Mi Smart Projector 2', 'Компьютер');");
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion,  int newVersion) {
@@ -38,12 +39,13 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         onCreate(db);
     }
 
-    void addEquip(int lab, String title){
+    void addEquip(String lab, String title, String type){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
         cv.put(COLUMN_CLASS, lab);
         cv.put(COLUMN_TITLE, title);
+        cv.put(COLUMN_TYPE, type);
         long result = db.insert(TABLE,null, cv);
         if (result == -1){
             Toast.makeText(context, "Ошибка", Toast.LENGTH_SHORT).show();
@@ -52,7 +54,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         }
     }
     Cursor readAllData(){
-        String query = "SELECT * FROM " + TABLE;
+        String query = "SELECT * FROM " + TABLE + " ORDER BY " + COLUMN_CLASS;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = null;
         if (db != null){
@@ -60,14 +62,14 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         }
         return cursor;
     }
-    void updateData(String row_id, String lab, String title){
+    void updateData(String row_id, String lab, String title, String type){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        int labInt = Integer.parseInt(lab);
         String row_id_trim = row_id.trim();
 
-        cv.put(COLUMN_CLASS, labInt);
+        cv.put(COLUMN_CLASS, lab);
         cv.put(COLUMN_TITLE, title);
+        cv.put(COLUMN_TYPE, type);
         long result = db.update(TABLE, cv, "_id" + "=" + row_id_trim, null);
         if (result == -1){
             Toast.makeText(context, "Ошибка", Toast.LENGTH_SHORT).show();
